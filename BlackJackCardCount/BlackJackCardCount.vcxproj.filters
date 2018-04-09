@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\MovesResults">
+      <UniqueIdentifier>{20ca3503-38ff-4ac8-b99b-2a0a3abf66e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MovesResults">
+      <UniqueIdentifier>{e9b15f03-bd4b-4d8b-901b-65fc311940f0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJackTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dealer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJackResultChecker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandScoreCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJackResultToCSV.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeastSquaresRegression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveSelector.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveStorage.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultsToConsole.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultsToMoves.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJackMoveFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJackWinOddsFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveFinderResultHandler.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="OddsFinderResultHander.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveFinderResultStorage.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="OddsFinderResultStorage.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="CardDeck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJackTableThreader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJackCardCount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJackTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dealer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJackResultChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HandScoreCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJackResultToCSV.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeastSquaresRegression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveSelector.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveStorage.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultsToConsole.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultsToMoves.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJackMoveFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJackWinOddsFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveFinderResultHandler.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="OddsFinderResultHander.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveFinderResultStorage.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="OddsFinderResultStorage.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="CardDeck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJackTableThreader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
