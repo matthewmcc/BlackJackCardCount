@@ -1,22 +1,22 @@
 #include "stdafx.h"
-#include "MoveFinderResultHandler.h"
+#include "MoveSamplerHandler.h"
 #include "BlackJackResultChecker.h"
-#include "MoveFinderResultStorage.h"
+#include "MoveSamplerResultStorage.h"
 
-MoveFinderResultHandler::MoveFinderResultHandler(Dealer &dealer, std::list<Player> &players)
+MoveSamplerHandler::MoveSamplerHandler(Dealer &dealer, std::list<Player> &players)
 {
 	DealerResult = dealer;
 	PlayersResult = players;
 
-	ResultStore = MoveFinderResultStorage::getInstance();
+	ResultStore = MoveSamplerResultStorage::getInstance();
 };
 
-MoveFinderResultHandler::~MoveFinderResultHandler()
+MoveSamplerHandler::~MoveSamplerHandler()
 {
 
 };
 
-void MoveFinderResultHandler::getResults()
+void MoveSamplerHandler::getResults()
 {
 	BlackJackResultChecker resultChecker = BlackJackResultChecker(DealerResult);
 
@@ -41,7 +41,7 @@ void MoveFinderResultHandler::getResults()
 	ResultStore->handPlayed();
 };
 
-void MoveFinderResultHandler::storeResults(HandResult &handResult)
+void MoveSamplerHandler::storeResults(HandResult &handResult)
 {
 	ResultStore->storeResult(handResult);
 };

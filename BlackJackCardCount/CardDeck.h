@@ -1,3 +1,5 @@
+//#include "BlackJack.h"
+
 #include <unordered_map>
 #include <list>
 #include <map>
@@ -38,7 +40,7 @@ struct std::hash<Card>
 {
 	std::size_t operator()(const Card& card) const
 	{
-		return std::hash<char>()(card.Suit)
+		return std::hash<int>()(card.Suit)
 			^ (std::hash<int>()(card.Rank)  << 1);
 	};
 };
@@ -68,7 +70,6 @@ private:
 	int DeckSize;
 
 	double CARD_DECK_SIZE = 52;
-	int ReshuffleAmount = 104;
 
 	int RANKS[13] = { Ace, Two, Three, Four, Five, Six, Seven, 
 		Eight, Nine, Ten, Jack, Queen, King };
@@ -82,6 +83,8 @@ private:
 	int SUITS_SIZE = 4;
 
 	void createDeck(int);
+
+	bool reshuffleRequried();
 
 	Card& removeRandomCard();
 	Card& randomCard();

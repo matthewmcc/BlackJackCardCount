@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BlackJackTableThreader.h"
-#include "MoveFinderResultStorage.h"
+#include "MoveSamplerResultStorage.h"
 
 #include <windows.h>
 #include <ctime>
@@ -13,7 +13,7 @@ BlackJackTableThreader::~BlackJackTableThreader()
 
 void BlackJackTableThreader::runTableThreads(int requiredIterations, bool isMoveFindingMode)
 {
-	int maxThreads = (int) std::thread::hardware_concurrency() - 1;
+	int maxThreads = (int)std::thread::hardware_concurrency() - 1;
 	RequiredIterations = requiredIterations;
 	IterationsPerThread = requiredIterations / maxThreads;
 	IsMoveFindingMode = isMoveFindingMode;
@@ -53,7 +53,7 @@ void BlackJackTableThreader::printTimeEstimate()
 {
 	double stop, elapsedTime, percentComplete, estimatedTime, handsPlayed;
 
-	MoveFinderResultStorage* resultHandler = MoveFinderResultStorage::getInstance();
+	MoveSamplerResultStorage* resultHandler = MoveSamplerResultStorage::getInstance();
 
 	handsPlayed = resultHandler->getHandsPlayed();
 

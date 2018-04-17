@@ -6,14 +6,14 @@ LeastSquaresRegression::~LeastSquaresRegression()
 {
 }
 
-CartesianLinearFunction LeastSquaresRegression::calculateLine()
+LinearFunction LeastSquaresRegression::calculateLine()
 {
 	calculateSums();
 
 	double slope = calculateSlope();
 	double yIntercept = calculateIntercept(slope);
 
-	return CartesianLinearFunction(slope, yIntercept);
+	return LinearFunction(slope, yIntercept);
 };
 
 // Function is bloated for effiency. Multiple doubles must be calculated within one loop. 
@@ -21,19 +21,21 @@ void LeastSquaresRegression::calculateSums()
 {
 	std::list<double>::iterator xIterator = DataLists.X.begin();
 	std::list<double>::iterator yIterator = DataLists.Y.begin();
-	std::list<int>::iterator weightsIterator = DataLists.Weights.begin();
+	std::list<double>::iterator countsIterator = DataLists.Counts.begin();
 
 	while (xIterator != DataLists.X.end())
 	{
-		XSum += *xIterator * (double) *weightsIterator;
-		YSum += *yIterator * (double) *weightsIterator;
+		double x = *xIterator, y = *yIterator, count = *countsIterator;
 
-		XYSum += (*xIterator * *yIterator) * (double)*weightsIterator;
-		XSquaredSum += (*xIterator * *xIterator) * (double)*weightsIterator;
+		XSum += x * count;
+		YSum += y * count;
 
-		NumberOfPoints += (double) *weightsIterator;
+		XYSum += (x * y) * count;
+		XSquaredSum += (x * x) * count;
 
-		xIterator++; yIterator++; weightsIterator++;
+		NumberOfPoints += count;
+
+		xIterator++; yIterator++; countsIterator++;
 	}
 };
 

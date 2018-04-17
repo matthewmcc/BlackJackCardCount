@@ -1,22 +1,22 @@
 #include "stdafx.h"
-#include "OddsFinderResultHander.h"
+#include "OddsSamplerHandler.h"
 #include "BlackJackResultChecker.h"
-#include "OddsFinderResultStorage.h"
+#include "OddsSamplerResultStorage.h"
 
-OddsFinderResultHander::OddsFinderResultHander(Dealer &dealer, std::list<Player> &players)
+OddsSamplerHandler::OddsSamplerHandler(Dealer &dealer, std::list<Player> &players)
 {
 	DealerResult = dealer;
 	PlayersResult = players;
 }
 
-OddsFinderResultHander::~OddsFinderResultHander()
+OddsSamplerHandler::~OddsSamplerHandler()
 {
 }
 
-void OddsFinderResultHander::getResults()
+void OddsSamplerHandler::getResults()
 {
 	BlackJackResultChecker resultChecker = BlackJackResultChecker(DealerResult);
-	OddsFinderResultStorage* resultStorage = OddsFinderResultStorage::getInstance();
+	OddsSamplerResultStorage* resultStorage = OddsSamplerResultStorage::getInstance();
 
 	for (Player &player : PlayersResult)
 	{

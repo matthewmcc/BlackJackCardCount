@@ -1,8 +1,10 @@
-#include "MoveFinderResultStorage.h"
+#include "stdafx.h"
+#include "MoveSamplerResultStorage.h"
 #include "LeastSquaresRegression.h"
+//#include "BlackJack.h"
 
 struct MoveFunctions {
-	MoveFunctions(CartesianLinearFunction hitFunction, CartesianLinearFunction standFunction)
+	MoveFunctions(LinearFunction hitFunction, LinearFunction standFunction)
 	{
 		HitFunction = hitFunction;
 		StandFunction = standFunction;
@@ -14,11 +16,11 @@ struct MoveFunctions {
 		double hitValue = HitFunction.getYCoordinate(index);
 		double standValue = StandFunction.getYCoordinate(index);
 
-		return standValue > hitValue ? 'S' : 'H';
+		return standValue > hitValue ? BlackJack::STAND : BlackJack::HIT;
 	};
 
-	CartesianLinearFunction HitFunction;
-	CartesianLinearFunction StandFunction;
+	LinearFunction HitFunction;
+	LinearFunction StandFunction;
 };
 
 #pragma once

@@ -19,6 +19,12 @@
     <Filter Include="Header Files\MovesResults">
       <UniqueIdentifier>{e9b15f03-bd4b-4d8b-901b-65fc311940f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\MachineLearning">
+      <UniqueIdentifier>{5a6f70b2-6b85-439c-b8e1-f1e941f73561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MachineLearning">
+      <UniqueIdentifier>{db1566f8-23df-49d4-aab2-03f26aec9c98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -45,16 +51,10 @@
     <ClInclude Include="BlackJackResultToCSV.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LeastSquaresRegression.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MoveSelector.h">
       <Filter>Header Files\MovesResults</Filter>
     </ClInclude>
     <ClInclude Include="MoveStorage.h">
-      <Filter>Header Files\MovesResults</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultsToConsole.h">
       <Filter>Header Files\MovesResults</Filter>
     </ClInclude>
     <ClInclude Include="ResultsToMoves.h">
@@ -66,23 +66,35 @@
     <ClInclude Include="BlackJackWinOddsFinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MoveFinderResultHandler.h">
-      <Filter>Header Files\MovesResults</Filter>
-    </ClInclude>
-    <ClInclude Include="OddsFinderResultHander.h">
-      <Filter>Header Files\MovesResults</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveFinderResultStorage.h">
-      <Filter>Header Files\MovesResults</Filter>
-    </ClInclude>
-    <ClInclude Include="OddsFinderResultStorage.h">
-      <Filter>Header Files\MovesResults</Filter>
-    </ClInclude>
     <ClInclude Include="CardDeck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BlackJackTableThreader.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GradientDescent.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="LeastSquaresRegression.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveSamplerHandler.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveSamplerResultStorage.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="DataListRandomizer.h">
+      <Filter>Header Files\MachineLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="OddsSamplerResultStorage.h">
+      <Filter>Header Files\MovesResults</Filter>
+    </ClInclude>
+    <ClInclude Include="OddsSamplerHandler.h">
+      <Filter>Header Files\MovesResults</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,16 +122,10 @@
     <ClCompile Include="BlackJackResultToCSV.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LeastSquaresRegression.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MoveSelector.cpp">
       <Filter>Source Files\MovesResults</Filter>
     </ClCompile>
     <ClCompile Include="MoveStorage.cpp">
-      <Filter>Source Files\MovesResults</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultsToConsole.cpp">
       <Filter>Source Files\MovesResults</Filter>
     </ClCompile>
     <ClCompile Include="ResultsToMoves.cpp">
@@ -131,15 +137,6 @@
     <ClCompile Include="BlackJackWinOddsFinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveFinderResultHandler.cpp">
-      <Filter>Source Files\MovesResults</Filter>
-    </ClCompile>
-    <ClCompile Include="OddsFinderResultHander.cpp">
-      <Filter>Source Files\MovesResults</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveFinderResultStorage.cpp">
-      <Filter>Source Files\MovesResults</Filter>
-    </ClCompile>
     <ClCompile Include="OddsFinderResultStorage.cpp">
       <Filter>Source Files\MovesResults</Filter>
     </ClCompile>
@@ -148,6 +145,27 @@
     </ClCompile>
     <ClCompile Include="BlackJackTableThreader.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackJack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeastSquaresRegression.cpp">
+      <Filter>Source Files\MachineLearning</Filter>
+    </ClCompile>
+    <ClCompile Include="GradientDescent.cpp">
+      <Filter>Source Files\MachineLearning</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveSamplerHandler.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveSamplerResultStorage.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="DataListRandomizer.cpp">
+      <Filter>Source Files\MachineLearning</Filter>
+    </ClCompile>
+    <ClCompile Include="OddsSamplerHander.cpp">
+      <Filter>Source Files\MovesResults</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

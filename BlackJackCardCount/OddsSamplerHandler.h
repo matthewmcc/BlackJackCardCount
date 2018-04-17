@@ -2,11 +2,11 @@
 #include "Player.h"
 
 #pragma once
-class OddsFinderResultHander
+class OddsSamplerHandler
 {
 public:
-	OddsFinderResultHander(Dealer&, std::list<Player>&);
-	~OddsFinderResultHander();
+	OddsSamplerHandler(Dealer&, std::list<Player>&);
+	~OddsSamplerHandler();
 
 	Dealer DealerResult;
 	std::list<Player> PlayersResult;

@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
+//#include "..\BlackJackCardCount\BlackJack.h"
+//#include "..\BlackJackCardCount\BlackJack.cpp"
+
 #include "../BlackJackCardCount/HandScoreCalculator.h"
 #include "../BlackJackCardCount/HandScoreCalculator.cpp"
 

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "BlackJackResultToCSV.h"
+#include "LeastSquaresRegression.h"
+
 #include <string>
 
 BlackJackResultToCSV* BlackJackResultToCSV::instance = 0;
@@ -35,4 +37,50 @@ void BlackJackResultToCSV::writeToCSV(std::list<HandResult> results)
 
 	resultFile.close();
 };
+
+void BlackJackResultToCSV::writeToCSV(HandState state, RegressionLists hitLists, RegressionLists standLists)
+{
+	std::ofstream resultFile;
+	std::string fileName = CSVFileDirectory +
+		std::to_string(state.PlayersScore) + "," + std::to_string(state.DealersUpCardValue)+",";
+
+	if (state.PlayersScoreIsSoft)
+		fileName += "isSoft.csv";
+	else
+		fileName += "isHard.csv";
+
+	resultFile.open(fileName, std::ios_base::app);
+
+	resultFile << "Index, Result, Players move" << std::endl;
+
+	std::list<double>::iterator xIterator = hitLists.X.begin();
+	std::list<double>::iterator yIterator = hitLists.Y.begin();
+	std::list<double>::iterator countsIterator = hitLists.Counts.begin();
+
+	while (xIterator != hitLists.X.end())
+	{
+		for (int i = 0; i < *countsIterator; i++)
+		{
+			resultFile << *xIterator << ", " << *yIterator << ", " << 'H' << std::endl;
+		}
+
+		xIterator++; yIterator++; countsIterator++;
+	}
+
+	xIterator = standLists.X.begin();
+	yIterator = standLists.Y.begin();
+	countsIterator = standLists.Counts.begin();
+
+	while (xIterator != standLists.X.end())
+	{
+		for (int i = 0; i < *countsIterator; i++)
+		{
+			resultFile << *xIterator << ", " << *yIterator << ", " << 'S' << std::endl;
+		}
+
+		xIterator++; yIterator++; countsIterator++;
+	}
+
+	resultFile.close();
+}
 

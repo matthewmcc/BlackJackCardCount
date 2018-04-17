@@ -1,13 +1,20 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
+#include "..\BlackJackCardCount\BlackJack.h"
+#include "..\BlackJackCardCount\BlackJack.cpp"
 
 #include "../BlackJackCardCount/BlackJackResultChecker.h"
 #include "../BlackJackCardCount/BlackJackResultChecker.cpp"
 
+//#include "../BlackJackCardCount/HandScoreCalculator.h"
+//#include "../BlackJackCardCount/HandScoreCalculator.cpp"
+
 #include "../BlackJackCardCount/Dealer.h"
+//#include "../BlackJackCardCount/Dealer.cpp"
+
 #include "../BlackJackCardCount/Player.h"
-#include "../BlackJackCardCount/HandScoreCalculator.h"
+//#include "../BlackJackCardCount/Player.cpp"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

@@ -26,7 +26,6 @@ private:
 	int RequiredIterations;
 	bool IsMoveFindingMode;
 
-
 	double ThreadsStartTime;
 
 	void printTimeEstimate();

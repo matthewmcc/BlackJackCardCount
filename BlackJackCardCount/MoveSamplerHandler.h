@@ -1,16 +1,16 @@
 #include "CardDeck.h"
 #include "Dealer.h"
 #include "Player.h"
-#include "MoveFinderResultStorage.h"
+#include "MoveSamplerResultStorage.h"
 
 #include <list>
 
 #pragma once
-class MoveFinderResultHandler
+class MoveSamplerHandler
 {
 public:
-	MoveFinderResultHandler(Dealer &dealer, std::list<Player> &players);
-	~MoveFinderResultHandler();
+	MoveSamplerHandler(Dealer &dealer, std::list<Player> &players);
+	~MoveSamplerHandler();
 
 	void getResults();
 
@@ -18,7 +18,7 @@ private:
 	Dealer DealerResult;
 	std::list<Player> PlayersResult;
 
-	MoveFinderResultStorage* ResultStore;
+	MoveSamplerResultStorage* ResultStore;
 
 	void storeResults(HandResult&);
 };

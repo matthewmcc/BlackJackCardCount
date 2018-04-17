@@ -1,4 +1,5 @@
-#include "MoveFinderResultStorage.h"
+#include "MoveSamplerResultStorage.h"
+#include "LeastSquaresRegression.h"
 
 #include <fstream>
 #include <list>
@@ -16,6 +17,7 @@ public:
 	};
 
 	void writeToCSV(std::list<HandResult>);
+	void writeToCSV(HandState, RegressionLists, RegressionLists);
 
 private:
 	static BlackJackResultToCSV* instance;
@@ -24,5 +26,6 @@ private:
 	~BlackJackResultToCSV();
 
 	std::string CSVFileName = "C:/Users/Matthew McCullough/Desktop/BlackJackResults/blackjack.csv";
+	std::string CSVFileDirectory = "C:/Users/Matthew McCullough/Desktop/BlackJackResults/";
 };
 

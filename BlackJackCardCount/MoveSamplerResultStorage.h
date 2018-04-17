@@ -1,4 +1,5 @@
 #include "CardDeck.h"
+//#include "BlackJack.h"
 
 #include <map>
 #include <list>
@@ -11,7 +12,7 @@ struct HandState
 
 	int DealersUpCardValue;
 
-	double Index;
+	int Index;
 
 	// Operator for <map> storage
 	bool operator<(const HandState& a) const
@@ -66,13 +67,13 @@ struct HandStateResults
 };
 
 #pragma once
-class MoveFinderResultStorage
+class MoveSamplerResultStorage
 {
 public:
-	static MoveFinderResultStorage* getInstance()
+	static MoveSamplerResultStorage* getInstance()
 	{
 		if (instance == 0)
-			instance = new MoveFinderResultStorage();
+			instance = new MoveSamplerResultStorage();
 
 		return instance;
 
@@ -86,7 +87,6 @@ public:
 		PlayerScoreToStore = playerScoreToStore;
 	};
 
-	void flushBuffer();
 	void clearResults();
 
 	std::map<HandState, HandStateResults> getResults() { return ResultsCounter; }
@@ -99,7 +99,7 @@ public:
 	int getHandsPlayed() { return HandsPlayed; };
 
 private:
-	static MoveFinderResultStorage* instance;
+	static MoveSamplerResultStorage* instance;
 
 	std::list<HandResult> BufferedResults;
 	std::map<HandState, HandStateResults> ResultsCounter;
@@ -114,14 +114,11 @@ private:
 
 	int MIN_LIST_FILE_SIZE = 1000;
 
-	MoveFinderResultStorage();
-	~MoveFinderResultStorage();
+	MoveSamplerResultStorage();
+	~MoveSamplerResultStorage();
 
 	bool resultToBeStored(HandResult&);
 
 	void incrementResult(HandResult&);
 	void addResultSet(HandState&);
-
-	void bufferResult(HandResult&);
-	void fileResults();
 };

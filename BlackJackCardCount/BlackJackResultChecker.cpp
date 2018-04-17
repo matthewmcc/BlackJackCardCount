@@ -21,37 +21,37 @@ void BlackJackResultChecker::addNextPlayer(Player &player)
 double BlackJackResultChecker::getBetMultiplier()
 {
 	if (isPlayerBust())
-		return LOSS_MULTIPLIER;
+		return BlackJack::LOSS;
 
 	if (isDealerBust())
 		if (PlayerHasBlackJack)
-			return BLACK_JACK_MULTIPLIER;
+			return BlackJack::BLACK_JACK_WIN;
 		else
-			return WIN_MULTIPLIER;
+			return BlackJack::WIN;
 
 	if (isPush())
-		return PUSH_MULTIPLIER;
+		return BlackJack::PUSH;
 
 	if (isWin())
 	{
 		if (PlayerHasBlackJack)
-			return BLACK_JACK_MULTIPLIER;
+			return BlackJack::BLACK_JACK_WIN;
 		else
-			return WIN_MULTIPLIER;
+			return BlackJack::WIN;
 	}
 	else
-		return LOSS_MULTIPLIER;
+		return BlackJack::LOSS;
 };
 
 bool BlackJackResultChecker::isPlayerBust()
 {
-	return PlayersScore > MAX_SCORE;
+	return PlayersScore > BlackJack::MAX_SCORE;
 
 };
 
 bool BlackJackResultChecker::isDealerBust()
 {
-	return DealersScore > MAX_SCORE;
+	return DealersScore > BlackJack::MAX_SCORE;
 };
 
 // When the player and dealer are not bust and have an equal score.
@@ -80,5 +80,5 @@ void BlackJackResultChecker::calculatePlayersScore(Player &player)
 
 bool BlackJackResultChecker::playerBlackJack(std::list<Card> &hand)
 {
-	return (PlayersScore == 21 && hand.size() == 2);
+	return (PlayersScore == BlackJack::MAX_SCORE && hand.size() == 2);
 };

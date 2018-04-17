@@ -1,6 +1,8 @@
+#include "stdafx.h"
 #include "CardDeck.h"
-#include "MoveFinderResultStorage.h"
+#include "MoveSamplerResultStorage.h"
 #include "HandScoreCalculator.h"
+//#include "BlackJack.h"
 
 #include <list>
 #include <stack>
@@ -20,13 +22,18 @@ public:
 	std::list<Card>& getHand() { return CardsInHand; };
 	inline int getHandScore();
 
-	inline bool handAtMaxSize() { return  (int)CardsInHand.size() >= MAX_HAND_SIZE; };
+	inline bool handAtMaxSize() 
+	{ 
+		return  (int)CardsInHand.size() >= BlackJack::MAX_HAND_SIZE; 
+	};
 
 	bool hasHandStates() { return PlayersStates.size() != 0; };
 	HandState& getHandState(double);
 
 	void setDealersUpCard(Card &upCard) 
-		{ DealersCurrentUpCardValue = ScoreCalculator.getCardValue(upCard); };
+	{ 
+		DealersCurrentUpCardValue = ScoreCalculator.getCardValue(upCard); 
+	};
 
 	char popMove() 
 	{   
@@ -48,9 +55,6 @@ public:
 
 private:
 	HandScoreCalculator ScoreCalculator;
-
-	char HIT_MARKER = 'H', STAND_MARKER = 'S';
-	int MAX_HAND_SIZE = 5;
 
 	std::list<Card> CardsInHand;
 	int DealersCurrentUpCardValue;

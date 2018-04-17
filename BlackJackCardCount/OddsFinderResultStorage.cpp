@@ -1,33 +1,38 @@
 #include "stdafx.h"
-#include "OddsFinderResultStorage.h"
+#include "OddsSamplerResultStorage.h"
 
 #include <iostream>
 #include <string>
 
-OddsFinderResultStorage* OddsFinderResultStorage::instance = 0;
+OddsSamplerResultStorage* OddsSamplerResultStorage::instance = 0;
 
-OddsFinderResultStorage::OddsFinderResultStorage()
+OddsSamplerResultStorage::OddsSamplerResultStorage()
 {
 	WinLossTally = 0.0;
 	TotalPlayed = 0.0;
 }
 
-OddsFinderResultStorage::~OddsFinderResultStorage()
+OddsSamplerResultStorage::~OddsSamplerResultStorage()
 {
 }
 
-void OddsFinderResultStorage::storeResult(double betMultiplier)
+void OddsSamplerResultStorage::storeResult(double betMultiplier)
 {
 	BetMultiplerResults[betMultiplier]++;
-	WinLossTally += betMultiplier;
+
+	WinLossTally += betMultiplier == 0 ? -1 : 0;
+	WinLossTally += betMultiplier == 1 ? 0 : 0;
+	WinLossTally += betMultiplier == 2 ? 1 : 0;
+	WinLossTally += betMultiplier == 2.5 ? 1.5 : 0;
+
 	TotalPlayed++;
 };
 
-void OddsFinderResultStorage::printResults()
+void OddsSamplerResultStorage::printResults()
 {
 	std::cout << std::endl << std::endl
 		<< "Loss percent: " << (BetMultiplerResults[0.0] / TotalPlayed) * 100
-		<< ", Stand percent: " << (BetMultiplerResults[1.0] / TotalPlayed) * 100
+		<< ", Push percent: " << (BetMultiplerResults[1.0] / TotalPlayed) * 100
 		<< ", Win percent: " << (BetMultiplerResults[2.0] / TotalPlayed) * 100
 		<< ", Black Jack win percent: " << (BetMultiplerResults[2.5] / TotalPlayed) * 100 << std::endl
 

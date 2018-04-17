@@ -26,7 +26,7 @@ void CardDeck::createDeck(int amountOfPacks) {
 
 void CardDeck::reshuffleDeck()
 {
-	if (DeckSize < (CARD_DECK_SIZE * AmountOfPacks) - ReshuffleAmount)
+	if (reshuffleRequried())
 	{
 		// Returns all the values of how many cards in the hash to Amount of packs
 		for (auto deckIterator = Deck.begin(); deckIterator != Deck.end(); ++deckIterator)
@@ -34,10 +34,16 @@ void CardDeck::reshuffleDeck()
 			deckIterator->second = (int) AmountOfPacks;
 		}
 
-		DeckSize = (int) AmountOfPacks * CARD_DECK_SIZE;
+		DeckSize = (int) (AmountOfPacks * CARD_DECK_SIZE);
 		CurrentIndex = 0.0;
 	}
 };
+
+bool CardDeck::reshuffleRequried()
+{
+	return DeckSize < (CARD_DECK_SIZE * BlackJack::PACKS_IN_DECK) *
+		BlackJack::RESHUFFLE_RATIO;
+}
 
 // Removes a random card from the Deck, adds it to PlayedCards and returns it.
 Card CardDeck::drawCard()
@@ -58,8 +64,10 @@ Card CardDeck::drawDealerHiddenCard()
 
 Card& CardDeck::removeRandomCard()
 {
-	Card drawnCard = randomCard();
+	if (DeckSize == 0)
+		reshuffleDeck();
 
+	Card drawnCard = randomCard();
 
 	while (Deck[drawnCard] == 0)
 	{
@@ -83,7 +91,7 @@ Card& CardDeck::randomCard()
 // Divides the CurrentIndex by the amount of packs left to give the Real count;
 double CardDeck::getCurrentRealCount()
 {
-	double packsLeft = (((double)deckSize()) / CARD_DECK_SIZE) / AmountOfPacks;
+	double packsLeft = (((double) deckSize()) / CARD_DECK_SIZE);
 	return CurrentIndex / packsLeft;
 };
 

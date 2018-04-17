@@ -4,8 +4,6 @@
 
 Dealer::Dealer()
 {
-	std::list<Card> CardsInHand = std::list<Card>();
-
 	ScoreCalculator = HandScoreCalculator();
 }
 
@@ -36,10 +34,10 @@ bool Dealer::dealerHits()
 
 	if (!handAtMaxSize())
 	{
-		if (handsScore <= DEALER_HARD_HIT_MAX)
+		if (handsScore <= BlackJack::DEALER_HARD_HIT_MAX)
 			return true;
 
-		if (handsScore == DEALER_SOFT_HIT_MAX && handIsSoft())
+		if (handsScore == BlackJack::DEALER_SOFT_HIT_MAX && handIsSoft())
 			return true;
 	}
 
@@ -48,7 +46,7 @@ bool Dealer::dealerHits()
 
 bool Dealer::handAtMaxSize()
 {
-	return ((int) CardsInHand.size()) >= MAX_HAND_SIZE;
+	return ((int) CardsInHand.size()) >= BlackJack::MAX_HAND_SIZE;
 };
 
 bool Dealer::handIsSoft()

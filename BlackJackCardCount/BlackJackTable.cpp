@@ -2,9 +2,9 @@
 #include "BlackJackTable.h"
 #include "BlackJackResultChecker.h"
 #include "CardDeck.h"
-#include "MoveFinderResultHandler.h"
+#include "MoveSamplerHandler.h"
 #include "MoveSelector.h"
-#include "OddsFinderResultHander.h"
+#include "OddsSamplerHandler.h"
 
 BlackJackTable::BlackJackTable(int amountOfPacksInDeck, int amountOfPlayers)
 {
@@ -95,13 +95,13 @@ void BlackJackTable::storeResults()
 {
 	if (IsMoveFindingMode)
 	{
-		MoveFinderResultHandler handler = MoveFinderResultHandler(TableDealer, Players);
+		MoveSamplerHandler handler = MoveSamplerHandler(TableDealer, Players);
 		handler.getResults();
 	}
 
 	else
 	{
-		OddsFinderResultHander handler = OddsFinderResultHander(TableDealer, Players);
+		OddsSamplerHandler handler = OddsSamplerHandler(TableDealer, Players);
 		handler.getResults();
 	}
 };

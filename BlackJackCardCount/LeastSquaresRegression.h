@@ -5,34 +5,34 @@ struct RegressionLists
 public:
 	RegressionLists()
 	{
-		std::list<double> X = std::list<double>();
-		std::list<double> Y = std::list<double>();
-		std::list<int> Weights = std::list<int>();
+		X = std::list<double>();
+		Y = std::list<double>();
+		Counts = std::list<double>();
 	}
 
-	RegressionLists(std::list<double> x, std::list<double> y, std::list<int> weights)
+	RegressionLists(std::list<double> x, std::list<double> y, std::list<double> counts)
 	{
 		X = x;
 		Y = y;
-		Weights = weights;
+		Counts = counts;
 	}
 
-	void addDataInstance(double x, double y, int weight)
+	void addDataInstance(double x, double y, double count)
 	{
 		X.push_back(x);
 		Y.push_back(y);
-		Weights.push_back(weight);
+		Counts.push_back(count);
 	};
 
 	std::list<double> X;
 	std::list<double> Y;
-	std::list<int> Weights;
+	std::list<double> Counts;
 };
 
-struct CartesianLinearFunction
+struct LinearFunction
 {
-	CartesianLinearFunction() {};
-	CartesianLinearFunction(double slope, double yIntercept)
+	LinearFunction() {};
+	LinearFunction(double slope, double yIntercept)
 	{
 		Slope = slope;
 		YIntercept = yIntercept;
@@ -59,7 +59,7 @@ public:
 	};
 	~LeastSquaresRegression();
 
-	CartesianLinearFunction calculateLine();
+	LinearFunction calculateLine();
 
 	double NumberOfPoints;
 

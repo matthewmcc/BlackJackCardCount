@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "BlackJackMoveFinder.h"
 #include "ResultsToMoves.h"
-#include "MoveFinderResultStorage.h"
+#include "MoveSamplerResultStorage.h"
 
 #include <iostream>
 #include <ctime>
@@ -33,7 +33,7 @@ void BlackJackMoveFinder::findMoves(int iterationsPerMove)
 
 void BlackJackMoveFinder::getMovesForPlayerScore(bool hardMoves, int playerScore)
 {
-	MoveFinderResultStorage* resultStore = MoveFinderResultStorage::getInstance();
+	MoveSamplerResultStorage* resultStore = MoveSamplerResultStorage::getInstance();
 	resultStore->updateScoreToStore(hardMoves, playerScore);
 
 	TableThreader.runTableThreads(IterationsPerMove, true);
@@ -46,6 +46,6 @@ void BlackJackMoveFinder::getMovesForPlayerScore(bool hardMoves, int playerScore
 
 void BlackJackMoveFinder::clearResults()
 {
-	MoveFinderResultStorage* resultStore = MoveFinderResultStorage::getInstance();
+	MoveSamplerResultStorage* resultStore = MoveSamplerResultStorage::getInstance();
 	resultStore->clearResults();
 }

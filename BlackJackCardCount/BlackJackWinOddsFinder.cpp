@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BlackJackWinOddsFinder.h"
-#include "OddsFinderResultStorage.h"
+#include "OddsSamplerResultStorage.h"
 
 #include <ctime>
 #include <iostream>
@@ -42,6 +42,6 @@ void BlackJackWinOddsFinder::findOdds(int finderIterations)
 	}
 
 
-	OddsFinderResultStorage* storage = OddsFinderResultStorage::getInstance();
+	OddsSamplerResultStorage* storage = OddsSamplerResultStorage::getInstance();
 	storage->printResults();
 };

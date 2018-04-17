@@ -17,13 +17,13 @@ namespace BlackJackUnitTests
 		{
 			std::list<double> x = getXList();
 			std::list<double> y = getYList();
-			std::list<int> weights = getWeightsList();
+			std::list<double> counts = getCountsList();
 
-			RegressionLists lists = RegressionLists(x, y, weights);
+			RegressionLists lists = RegressionLists(x, y, counts);
 
 			LeastSquaresRegression regression = LeastSquaresRegression(lists);
 
-			CartesianLinearFunction linearFunction = regression.calculateLine();
+			LinearFunction linearFunction = regression.calculateLine();
 
 			double slopeAnswer = 249.0 / 164.0;
 			Assert::AreEqual(linearFunction.Slope, slopeAnswer);
@@ -45,10 +45,10 @@ namespace BlackJackUnitTests
 			return y;
 		}
 
-		std::list<int> getWeightsList()
+		std::list<double> getCountsList()
 		{
-			std::list<int> weights = { 1, 1, 1, 1, 1 };
-			return weights;
-		}
+			std::list<double> counts = { 1, 1, 1, 1, 1 };
+			return counts;
+		} 
 	};
 }

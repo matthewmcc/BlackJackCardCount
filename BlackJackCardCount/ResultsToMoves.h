@@ -1,6 +1,8 @@
-#include "MoveFinderResultStorage.h"
+#include "stdafx.h"
+#include "MoveSamplerResultStorage.h"
 #include "LeastSquaresRegression.h"
 #include "MoveStorage.h"
+//#include "BlackJack.h"
 
 #pragma once
 class ResultsToMoves
@@ -17,7 +19,9 @@ public:
 
 private:
 	MoveStorage* MoveStore;
-	std::map<double, double> OutcomeValue = { { 0, -1 },{ 1, 1 },{ 2, 2 },{ 2.5, 2.5 } };
+	std::map<double, double> OUTCOME_VALUE = 
+		{ {BlackJack::LOSS, -1}, { BlackJack::PUSH, 1 },
+		{ BlackJack::WIN, 2 }, { BlackJack::BLACK_JACK_WIN, 2.5 } };
 
 	void divideResultsByHandState(std::map<HandState, HandStateResults>);
 
@@ -30,4 +34,8 @@ private:
 
 
 	void printNewFunction(HandState, MoveFunctions, int);
+
+	void printListIndex(std::map<HandState, HandStateResults>);
+
+	void checkBetChangeIndex(MoveFunctions);
 };

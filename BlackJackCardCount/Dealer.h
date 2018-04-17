@@ -1,5 +1,7 @@
+#include "stdafx.h"
 #include "CardDeck.h"
 #include "HandScoreCalculator.h"
+//#include "BlackJack.h"
 
 #include <list>
 
@@ -27,10 +29,6 @@ public:
 	void resetHand();
 
 private:
-	int DEALER_HARD_HIT_MAX = 16;
-	int DEALER_SOFT_HIT_MAX = 17;
-	int MAX_HAND_SIZE = 5;
-
 	std::list<Card> CardsInHand;
 	Card UpCard;
 	Card DownCard;

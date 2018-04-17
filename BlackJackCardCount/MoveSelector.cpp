@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "MoveSelector.h"
+//#include "BlackJack.h"
 
 MoveSelector::~MoveSelector()
 {
@@ -10,7 +11,7 @@ char MoveSelector::move(HandState &handState, double index)
 {
 	if (handState.PlayersScore > 20)
 	{
-		return 'S';
+		return BlackJack::STAND;
 	}
 
 	if (Moves->containsMove(handState))
@@ -24,7 +25,7 @@ char MoveSelector::move(HandState &handState, double index)
 char MoveSelector::randomMove()
 {
 	if (rand() % 2)
-		return 'H';
+		return BlackJack::HIT;
 	else
-		return 'S';
+		return BlackJack::STAND;
 };

@@ -1,4 +1,4 @@
-#include "MoveFinderResultHandler.h"
+#include "MoveSamplerHandler.h"
 #include "MoveStorage.h"
 
 #pragma once
@@ -8,7 +8,7 @@ public:
 	MoveSelector()
 	{
 		Moves = MoveStorage::getInstance();
-		Results = MoveFinderResultStorage::getInstance();
+		Results = MoveSamplerResultStorage::getInstance();
 	};
 
 	~MoveSelector();
@@ -17,7 +17,7 @@ public:
 
 private:
 	MoveStorage* Moves;
-	MoveFinderResultStorage* Results;
+	MoveSamplerResultStorage* Results;
 
 	char randomMove();
 };

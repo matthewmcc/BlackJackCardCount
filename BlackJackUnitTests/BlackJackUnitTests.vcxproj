@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlackJackResultCheckerUnitTests.cpp" />
+    <ClCompile Include="DataListRandomizerUnitTests.cpp" />
     <ClCompile Include="HandScoreCalculatorUnitTests.cpp" />
     <ClCompile Include="LeastSquaresRegressionUnitTests.cpp" />
     <ClCompile Include="stdafx.cpp">

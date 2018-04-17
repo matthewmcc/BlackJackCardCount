@@ -5,11 +5,6 @@
 
 Player::Player()
 {
-	CardsInHand;// = std::list<Card>();
-
-	MovesMade;// = std::stack<char>();
-	PlayersStates;// = std::stack<HandState>();
-
 	ScoreCalculator = HandScoreCalculator();
 }
 
@@ -26,12 +21,12 @@ void Player::hit(Card &newCard)
 {
 	addCardToHand(newCard);
 
-	MovesMade.push(HIT_MARKER);
+	MovesMade.push(BlackJack::HIT);
 };
 
 void Player::stand()
 {
-	MovesMade.push(STAND_MARKER);
+	MovesMade.push(BlackJack::STAND);
 };
 
 void Player::resetHand() 
@@ -52,7 +47,7 @@ void Player::createHandState(double index)
 {
 	HandState newState;
 
-	newState.Index = index;
+	newState.Index = (int) round(index);
 	newState.PlayersScore = getHandScore();
 	newState.PlayersScoreIsSoft = ScoreCalculator.handIsSoft(CardsInHand);
 	newState.DealersUpCardValue = DealersCurrentUpCardValue;
