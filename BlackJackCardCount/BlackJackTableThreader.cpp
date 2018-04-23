@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "BlackJackTableThreader.h"
 #include "MoveSamplerResultStorage.h"
+#include "OddsSamplerResultStorage.h"
 
 #include <windows.h>
 #include <ctime>
@@ -53,9 +54,7 @@ void BlackJackTableThreader::printTimeEstimate()
 {
 	double stop, elapsedTime, percentComplete, estimatedTime, handsPlayed;
 
-	MoveSamplerResultStorage* resultHandler = MoveSamplerResultStorage::getInstance();
-
-	handsPlayed = resultHandler->getHandsPlayed();
+	handsPlayed = getHandsPlayed();
 
 	while (handsPlayed < (RequiredIterations)-100)
 	{
@@ -69,6 +68,20 @@ void BlackJackTableThreader::printTimeEstimate()
 			<< (int)estimatedTime % 60 << " seconds";
 
 		Sleep(100);
-		handsPlayed = resultHandler->getHandsPlayed();
+		handsPlayed = getHandsPlayed();
+	}
+};
+
+double BlackJackTableThreader::getHandsPlayed()
+{
+	if (IsMoveFindingMode)
+	{
+		MoveSamplerResultStorage* resultHandler = MoveSamplerResultStorage::getInstance();
+		return resultHandler->getHandsPlayed();
+	}
+	else
+	{
+		OddsSamplerResultStorage* resultHandler = OddsSamplerResultStorage::getInstance();
+		return resultHandler->getHandsPlayed();
 	}
 };

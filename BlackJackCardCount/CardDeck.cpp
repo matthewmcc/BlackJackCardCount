@@ -92,7 +92,11 @@ Card& CardDeck::randomCard()
 double CardDeck::getCurrentRealCount()
 {
 	double packsLeft = (((double) deckSize()) / CARD_DECK_SIZE);
-	return CurrentIndex / packsLeft;
+
+	if (packsLeft > 0)
+		return CurrentIndex / packsLeft;
+
+	return 0;
 };
 
 void CardDeck::updateIndex(Card& cardRemoved)

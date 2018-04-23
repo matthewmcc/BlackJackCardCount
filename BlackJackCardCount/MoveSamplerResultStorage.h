@@ -1,10 +1,10 @@
 #include "CardDeck.h"
-//#include "BlackJack.h"
 
 #include <map>
 #include <list>
 #include <mutex>
 
+// Complete hand state used as an index to store and sort MoveFunctions and HandResults.
 struct HandState
 {
 	bool PlayersScoreIsSoft;
@@ -37,6 +37,7 @@ struct HandState
 	}
 };
 
+// The complete calculated state of a hand.
 struct HandResult
 {
 	HandResult(HandState& handState) { HandState = handState; }
@@ -54,12 +55,16 @@ struct HandResult
 	inline double index() { return HandState.Index; };
 };
 
+// Lists to store each result type by players move. Hit or Stand.
 struct HandStateResults
 {
 	HandStateResults()
 	{
-		StandResults = { {0.0, 0}, {1.0, 0}, {2.0, 0}, {2.5, 0} };
-		HitResults = { {0.0, 0}, {1.0, 0}, {2.0, 0}, {2.5, 0} };
+		StandResults = { { BlackJack::LOSS, 0 },{ BlackJack::PUSH, 0 },
+			{ BlackJack::WIN, 0 },{ BlackJack::BLACK_JACK_WIN, 0 } };
+
+		HitResults = { { BlackJack::LOSS, 0 },{ BlackJack::PUSH, 0 },
+			{ BlackJack::WIN, 0 },{ BlackJack::BLACK_JACK_WIN, 0 } };
 	};
 
 	std::map<double, int> StandResults;
@@ -67,6 +72,7 @@ struct HandStateResults
 };
 
 #pragma once
+// Stores HandResults by HandStates to be used to calculate Black Jack MoveFunctions.
 class MoveSamplerResultStorage
 {
 public:

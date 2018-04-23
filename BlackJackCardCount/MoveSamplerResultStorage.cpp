@@ -49,10 +49,7 @@ void MoveSamplerResultStorage::incrementResult(HandResult& handData)
 void MoveSamplerResultStorage::addResultSet(HandState& handState)
 {
 	HandStateResults stateResults = HandStateResults();
-	std::pair<HandState, HandStateResults> newResult = 
-		std::pair<HandState, HandStateResults>(handState, stateResults);
-
-	ResultsCounter.insert(newResult);
+	ResultsCounter[handState] = stateResults;
 };
 
 

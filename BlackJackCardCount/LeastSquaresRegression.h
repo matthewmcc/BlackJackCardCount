@@ -48,6 +48,7 @@ struct LinearFunction
 };
 
 #pragma once
+// Preforms Least squares regression on a regression list object.
 class LeastSquaresRegression
 {
 public:

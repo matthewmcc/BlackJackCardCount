@@ -35,6 +35,7 @@ struct Card {
 	}
 };
 
+// Hashing function used to store Cards in a unordered_map.
 template <>
 struct std::hash<Card>
 {
@@ -46,6 +47,7 @@ struct std::hash<Card>
 };
 
 #pragma once
+// Used to simulate multiple randomly shuffled card decks and store the Hi-Lo card count.
 class CardDeck
 {
 public:
@@ -59,7 +61,7 @@ public:
 
 	double getCurrentRealCount();
 
-	void updateIndex(Card&);
+	void updateIndex(Card& cardRemoved);
 
 	void reshuffleDeck();
 

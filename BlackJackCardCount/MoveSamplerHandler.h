@@ -6,6 +6,8 @@
 #include <list>
 
 #pragma once
+// Converts Dealer and Player states to HandState HandResults pairs and stores pairs...
+// ...that HandStates match the currently calculated moves.
 class MoveSamplerHandler
 {
 public:

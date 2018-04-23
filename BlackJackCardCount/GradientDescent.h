@@ -1,10 +1,11 @@
 #include "LeastSquaresRegression.h"
 
 #pragma once
+// Performs GradientDescent on a RegressionList object.
 class GradientDescent
 {
 public:
-	GradientDescent(RegressionLists);
+	GradientDescent(RegressionLists dataLists);
 	~GradientDescent();
 
 	RegressionLists DataLists;
@@ -34,5 +35,6 @@ private:
 	double sigmoidA(double);
 	double sigmoidB(double, double);
 	double sumOfSquaredErrors(double);
-};
 
+	void randomizeData();
+};

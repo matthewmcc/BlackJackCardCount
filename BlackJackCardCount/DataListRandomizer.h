@@ -3,21 +3,18 @@
 #include <vector>
 
 #pragma once
+// Multiples out regression list data by counts and randomises the data in the lists.
 class DataListRandomizer
 {
 public:
 	DataListRandomizer();
 	~DataListRandomizer();
 
-	RegressionLists randomizeDataLists(RegressionLists&);
+	RegressionLists randomizeDataLists(RegressionLists &dataLists);
 
 private:
 	RegressionLists NewDataLists;
 	std::vector<double> X, Y;
-
-	void mulitplyDataByCounts(RegressionLists&);
-
-	void mergeRandomizer(std::pair<std::list<double>&, std::list<double>&>);
 
 	void listsToVectors(RegressionLists&);
 

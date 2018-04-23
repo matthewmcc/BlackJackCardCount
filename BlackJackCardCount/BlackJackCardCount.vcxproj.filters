@@ -48,9 +48,6 @@
     <ClInclude Include="HandScoreCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlackJackResultToCSV.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MoveSelector.h">
       <Filter>Header Files\MovesResults</Filter>
     </ClInclude>
@@ -119,9 +116,6 @@
     <ClCompile Include="HandScoreCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BlackJackResultToCSV.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MoveSelector.cpp">
       <Filter>Source Files\MovesResults</Filter>
     </ClCompile>
@@ -136,9 +130,6 @@
     </ClCompile>
     <ClCompile Include="BlackJackWinOddsFinder.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OddsFinderResultStorage.cpp">
-      <Filter>Source Files\MovesResults</Filter>
     </ClCompile>
     <ClCompile Include="CardDeck.cpp">
       <Filter>Source Files</Filter>
@@ -164,7 +155,10 @@
     <ClCompile Include="DataListRandomizer.cpp">
       <Filter>Source Files\MachineLearning</Filter>
     </ClCompile>
-    <ClCompile Include="OddsSamplerHander.cpp">
+    <ClCompile Include="OddsSamplerResultStorage.cpp">
+      <Filter>Source Files\MovesResults</Filter>
+    </ClCompile>
+    <ClCompile Include="OddsSamplerHandler.cpp">
       <Filter>Source Files\MovesResults</Filter>
     </ClCompile>
   </ItemGroup>

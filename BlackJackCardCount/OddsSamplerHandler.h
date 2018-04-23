@@ -2,10 +2,11 @@
 #include "Player.h"
 
 #pragma once
+// Calculates the results of played hands and stores the results by HandState
 class OddsSamplerHandler
 {
 public:
-	OddsSamplerHandler(Dealer&, std::list<Player>&);
+	OddsSamplerHandler(Dealer &dealer, std::list<Player> &players);
 	~OddsSamplerHandler();
 
 	Dealer DealerResult;

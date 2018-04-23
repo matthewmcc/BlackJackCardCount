@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "MoveSamplerResultStorage.h"
 #include "LeastSquaresRegression.h"
-//#include "BlackJack.h"
 
+// Holds linear functions for hit and stand moves.
 struct MoveFunctions {
 	MoveFunctions(LinearFunction hitFunction, LinearFunction standFunction)
 	{
@@ -24,6 +24,7 @@ struct MoveFunctions {
 };
 
 #pragma once
+// Stores MoveFunctions by HandState to calculate moves by index.
 class MoveStorage
 {
 public:
@@ -35,11 +36,11 @@ public:
 		return instance;
 	};
 
-	bool containsMove(HandState);
+	bool containsMove(HandState state);
 
-	char getMove(HandState, double);
+	char getMove(HandState &state, double index);
 
-	void addMoveFunction(HandState, MoveFunctions);
+	void addMoveFunction(HandState state, MoveFunctions function);
 
 private:
 	static MoveStorage* instance;
@@ -48,5 +49,7 @@ private:
 
 	MoveStorage();
 	~MoveStorage();
+
+	void makeHandStateSortable(HandState&);
 };
 

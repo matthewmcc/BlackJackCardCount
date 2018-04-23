@@ -13,16 +13,14 @@ MoveStorage::~MoveStorage()
 
 bool MoveStorage::containsMove(HandState state)
 {
-	// Sets index to 0 because its value is no longer needed.
-	state.Index = 0;
+	makeHandStateSortable(state);
 
 	return (MoveTable.count(state) != 0);
 };
 
-char MoveStorage::getMove(HandState state, double index) 
+char MoveStorage::getMove(HandState &state, double index) 
 { 
-	// Sets index to 0 because its value is no longer needed.
-	state.Index = 0;
+	makeHandStateSortable(state);
 
 	MoveFunctions moveFunction = MoveTable[state];
 
@@ -31,9 +29,14 @@ char MoveStorage::getMove(HandState state, double index)
 
 void MoveStorage::addMoveFunction(HandState state, MoveFunctions function)
 {
-	// Sets index to 0 because its value is no longer needed.
-	state.Index = 0;
+	makeHandStateSortable(state);
 
 	std::pair<HandState, MoveFunctions> newMove = std::pair<HandState, MoveFunctions>(state, function);
 	MoveTable.insert(newMove);
+};
+
+void MoveStorage::makeHandStateSortable(HandState &state)
+{
+	// Sets index to 0 because its value is no longer needed for sorting.
+	state.Index = 0;
 };

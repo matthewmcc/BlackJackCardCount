@@ -4,6 +4,8 @@
 #include <thread>
 
 #pragma once
+// Runs Black Jack table objects on multiple threads until a the passed amount of iterations...
+// ...are met.
 class BlackJackTableThreader
 {
 public:
@@ -15,9 +17,7 @@ public:
 	BlackJackTableThreader() {};
 	~BlackJackTableThreader();
 
-	void runTableThreads(int, bool);
-
-	void playRounds();
+	void runTableThreads(int requiredIterations, bool isMoveFindingMode);
 
 private:
 	int AmountOfPacksInDeck;
@@ -28,6 +28,10 @@ private:
 
 	double ThreadsStartTime;
 
+	void playRounds();
+
 	void printTimeEstimate();
+
+	double getHandsPlayed();
 };
 

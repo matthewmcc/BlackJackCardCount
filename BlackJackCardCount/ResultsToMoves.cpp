@@ -3,8 +3,6 @@
 #include "ResultsToMoves.h"
 #include "LeastSquaresRegression.h"
 #include "GradientDescent.h"
-//#include "BlackJack.h"
-#include "BlackJackResultToCSV.h"
 
 #include <iostream>
 #include <string>
@@ -26,129 +24,109 @@ void ResultsToMoves::convertResultsToMoves()
 void ResultsToMoves::divideResultsByHandState(std::map<HandState, HandStateResults> resultsCounters)
 {
 	HandState stateToMatch = (*resultsCounters.begin()).first;
-	std::map<HandState, HandStateResults> singleStateResult = std::map<HandState, HandStateResults>();
+	std::map<int, HandStateResults> singleStateResult;
 
 	for (std::pair<HandState, HandStateResults> resultState : resultsCounters)
 	{
 		if (resultState.first.stateEqualButIndex(stateToMatch))
 		{
-			singleStateResult.insert(resultState);
+			singleStateResult[resultState.first.Index] = resultState.second;
 		}
 		else
 		{
-			getRegressionFunctions(singleStateResult);
+			getRegressionFunctions(stateToMatch, singleStateResult);
 
 			stateToMatch = resultState.first;
-			singleStateResult = std::map<HandState, HandStateResults>();
+			singleStateResult.clear();
 		}
 	}
 
-	getRegressionFunctions(singleStateResult);
+	getRegressionFunctions(stateToMatch, singleStateResult);
 };
 
-void ResultsToMoves::getRegressionFunctions(std::map<HandState, HandStateResults> singleStateResult)
+void ResultsToMoves::getRegressionFunctions(HandState handState, 
+	std::map<int, HandStateResults> singleStateResult)
 {
-	RegressionLists hitOddsTotalsWeightsLists = createHitRegressionLists(singleStateResult);
-
-	//LeastSquaresRegression hitRegression = LeastSquaresRegression(hitOddsTotalsWeightsLists);
-	GradientDescent hitRegression = GradientDescent(hitOddsTotalsWeightsLists);
-	LinearFunction hitFunction = hitRegression.calculateLine();
-
-
-	RegressionLists standOddsTotalsWeightsLists = createStandRegressionLists(singleStateResult);
-
-	//LeastSquaresRegression standRegression = LeastSquaresRegression(standOddsTotalsWeightsLists);
-	GradientDescent standRegression = GradientDescent(standOddsTotalsWeightsLists);
-	LinearFunction standFunction = standRegression.calculateLine();
-
+	LinearFunction hitFunction = createHitLinearFunction(singleStateResult);
+	LinearFunction standFunction = createStandLinearFunction(singleStateResult);
 
 	MoveFunctions moveFunctions = MoveFunctions(hitFunction, standFunction);
+	storeMoveFunctions(handState, moveFunctions);
 
-	HandState functionsHandState = (*singleStateResult.begin()).first;
-	storeMoveFunctions(functionsHandState, moveFunctions);
-
-	printNewFunction(functionsHandState, moveFunctions, 
-		(int) (hitRegression.NumberOfPoints + standRegression.NumberOfPoints));
+	printNewFunction(handState, moveFunctions);
 
 	//printListIndex(singleStateResult);
-
-
-	//BlackJackResultToCSV* toCSV = BlackJackResultToCSV::getInstance();
-	//toCSV->writeToCSV(functionsHandState, hitOddsTotalsWeightsLists, standOddsTotalsWeightsLists);
 };
 
+LinearFunction ResultsToMoves::createHitLinearFunction(std::map<int, HandStateResults> &singleStateResults)
+{
+	RegressionLists hitOddsTotalsWeightsLists = createHitRegressionLists(singleStateResults);
 
-RegressionLists ResultsToMoves::createHitRegressionLists(std::map<HandState, HandStateResults> &singleStateResult)
+	LeastSquaresRegression hitRegression = LeastSquaresRegression(hitOddsTotalsWeightsLists);
+	return hitRegression.calculateLine();
+};
+
+RegressionLists ResultsToMoves::createHitRegressionLists(std::map<int, HandStateResults> &singleStateResult)
 {
 	RegressionLists dataLists = RegressionLists();
 
-	for (std::pair<HandState, HandStateResults> resultState : singleStateResult)
+	for (std::pair<int, HandStateResults> resultState : singleStateResult)
 	{
-		double totalPlayed = 0.0;
-
-		for each (std::pair<double, int> incrementedResults in resultState.second.HitResults)
-			totalPlayed += incrementedResults.second;
-
-		if (totalPlayed > 5)
+		if (isNotOutlier(resultState.second.HitResults))
 		{
-			for each (std::pair<double, int> incrementedResults in resultState.second.HitResults)
-			{
-				if (incrementedResults.second > 0)
-				{
-					if (resultState.first.Index > 1000 || resultState.first.Index < -1000)
-					{
-						std::cout << std::endl << "Hit index error: " << resultState.first.Index
-							<< ", Total played: " << totalPlayed << ", Count: " << incrementedResults.second << std::endl;
-
-					}
-					else
-					{
-
-						dataLists.addDataInstance(resultState.first.Index,
-							OUTCOME_VALUE[incrementedResults.first], incrementedResults.second);
-					}
-				}
-			}
+			addNewMoveResults(dataLists, resultState.second.HitResults,
+				resultState.first);
 		}
 	}
 
 	return dataLists;
 };
 
-RegressionLists ResultsToMoves::createStandRegressionLists(std::map<HandState, HandStateResults> &singleStateResult)
+LinearFunction ResultsToMoves::createStandLinearFunction(std::map<int, HandStateResults> &singleStateResults)
+{
+	RegressionLists standOddsTotalsWeightsLists = createStandRegressionLists(singleStateResults);
+
+	LeastSquaresRegression standRegression = LeastSquaresRegression(standOddsTotalsWeightsLists);
+	return standRegression.calculateLine();
+};
+
+RegressionLists ResultsToMoves::createStandRegressionLists(std::map<int, HandStateResults> &singleStateResult)
 {
 	RegressionLists dataLists = RegressionLists();
 
-	for (std::pair<HandState, HandStateResults> resultState : singleStateResult)
+	for (std::pair<int, HandStateResults> resultState : singleStateResult)
 	{
-		double totalPlayed = 0.0;
-
-		for each (std::pair<double, int> incrementedResults in resultState.second.StandResults)
-			totalPlayed += incrementedResults.second;
-
-		if (totalPlayed > 5)
+		if (isNotOutlier(resultState.second.StandResults))
 		{
-			for each (std::pair<double, int> incrementedResults in resultState.second.StandResults)
-			{
-				if (incrementedResults.second > 0)
-				{
-					if (resultState.first.Index > 1000 || resultState.first.Index < -1000)
-					{
-						std::cout << std::endl << "Stand index error: " << resultState.first.Index
-							<< ", Total played: " << totalPlayed << ", Count: " << incrementedResults.second << std::endl;
-					}
-					else
-					{
-
-						dataLists.addDataInstance(resultState.first.Index,
-							OUTCOME_VALUE[incrementedResults.first], incrementedResults.second);
-					}
-				}
-			}
+			addNewMoveResults(dataLists, resultState.second.StandResults,
+				resultState.first);
 		}
 	}
 
 	return dataLists;
+};
+
+bool ResultsToMoves::isNotOutlier(std::map<double, int> &moveResults)
+{
+	double totalPlayed = 0.0;
+
+	for each (std::pair<double, int> incrementedResults in moveResults)
+		totalPlayed += incrementedResults.second;
+
+	return totalPlayed > BlackJack::MIN_RESULT_AMONUT;
+};
+
+void ResultsToMoves::addNewMoveResults(RegressionLists &dataLists, std::map<double, int> &moveResults,
+	double index)
+{
+	for each (std::pair<double, int> incrementedResults in moveResults)
+	{
+		if (incrementedResults.second > 0)
+		{
+			dataLists.addDataInstance(index,
+				OUTCOME_VALUE[incrementedResults.first], incrementedResults.second);
+		}
+	}
 };
 
 void ResultsToMoves::storeMoveFunctions(HandState state, MoveFunctions function)
@@ -157,8 +135,10 @@ void ResultsToMoves::storeMoveFunctions(HandState state, MoveFunctions function)
 };
 
 
-void ResultsToMoves::printNewFunction(HandState state, MoveFunctions functions, int numberOfPoints)
+void ResultsToMoves::printNewFunction(HandState state, MoveFunctions functions)
 {
+	MoveSamplerResultStorage* resultStorage = MoveSamplerResultStorage::getInstance();
+
 	std::cout << '\r' << "Players score: " << state.PlayersScore;
 
 	if (state.PlayersScoreIsSoft)
@@ -166,14 +146,13 @@ void ResultsToMoves::printNewFunction(HandState state, MoveFunctions functions, 
 	else
 		std::cout << ", hard score, ";
 
-	std::cout << "Dealers card value: " << state.DealersUpCardValue
-		<< ", Number Sampled: " << numberOfPoints << std::endl;
+	std::cout << "Dealers card value: " << state.DealersUpCardValue << std::endl;
 
-	std::cout << "Hit function: y = " << functions.HitFunction.Slope << "x + " 
-		<< functions.HitFunction.YIntercept << std::endl;
+	//std::cout << "Hit function: y = " << functions.HitFunction.Slope << "x + " 
+	//	<< functions.HitFunction.YIntercept << std::endl;
 
-	std::cout << "Stand function: y = " << functions.StandFunction.Slope << "x + "
-		<< functions.StandFunction.YIntercept << std::endl;
+	//std::cout << "Stand function: y = " << functions.StandFunction.Slope << "x + "
+	//	<< functions.StandFunction.YIntercept << std::endl;
 
 	checkBetChangeIndex(functions);
 

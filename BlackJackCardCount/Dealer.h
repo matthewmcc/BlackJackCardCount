@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "CardDeck.h"
 #include "HandScoreCalculator.h"
-//#include "BlackJack.h"
 
 #include <list>
 
 #pragma once
+// Simulates a Black Jack dealer.
 class Dealer
 {
 public:

@@ -2,18 +2,18 @@
 #include "Dealer.h"
 #include "Player.h"
 #include "HandScoreCalculator.h"
-//#include "BlackJack.h"
 
 #include <map>
 
 #pragma once
+// Used to find the bet multiplier given a Dealer and Player with complete hands
 class BlackJackResultChecker
 {
 public:
-	BlackJackResultChecker(Dealer&);
+	BlackJackResultChecker(Dealer &tableDealer);
 	~BlackJackResultChecker();
 
-	void addNextPlayer(Player&);
+	void addNextPlayer(Player &player);
 
 	double getBetMultiplier();
 

@@ -147,7 +147,6 @@
   <ItemGroup>
     <ClInclude Include="BlackJack.h" />
     <ClInclude Include="BlackJackMoveFinder.h" />
-    <ClInclude Include="BlackJackResultToCSV.h" />
     <ClInclude Include="BlackJackTable.h" />
     <ClInclude Include="BlackJackResultChecker.h" />
     <ClInclude Include="BlackJackTableThreader.h" />
@@ -172,7 +171,6 @@
   <ItemGroup>
     <ClCompile Include="BlackJackCardCount.cpp" />
     <ClCompile Include="BlackJackMoveFinder.cpp" />
-    <ClCompile Include="BlackJackResultToCSV.cpp" />
     <ClCompile Include="BlackJackTable.cpp" />
     <ClCompile Include="BlackJackResultChecker.cpp" />
     <ClCompile Include="BlackJackTableThreader.cpp" />
@@ -184,8 +182,8 @@
     <ClCompile Include="LeastSquaresRegression.cpp" />
     <ClCompile Include="MoveSelector.cpp" />
     <ClCompile Include="MoveStorage.cpp" />
-    <ClCompile Include="OddsSamplerHander.cpp" />
-    <ClCompile Include="OddsFinderResultStorage.cpp" />
+    <ClCompile Include="OddsSamplerHandler.cpp" />
+    <ClCompile Include="OddsSamplerResultStorage.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="MoveSamplerHandler.cpp" />
     <ClCompile Include="DataListRandomizer.cpp" />

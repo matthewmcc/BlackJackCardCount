@@ -5,6 +5,10 @@
 #include <list>
 
 #pragma once
+// Simulates rounds of Black Jack. Has 2 simulation modes. IsMoveFindingMode = True will...
+// ...store randomly simulated moves results in a MoveSamplerResultStorage and IsMOveFindingMode = false...
+// ...will use a populated MoveSelector to calculate which move to make and store the results in...
+// ...OddsSamplerResultsStorage.
 class BlackJackTable
 {
 public:
@@ -27,6 +31,7 @@ private:
 	MoveSelector MoveSelect;
 
 	void deal();
+	void setIndexBeforeDeal();
 	void dealEachPlayerACard();
 	void showPlayersDealersUpCard();
 

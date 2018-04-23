@@ -30,6 +30,9 @@ namespace BlackJack
 
 	// Ratio of deck that must be played before theres a reshuffle
 	extern double RESHUFFLE_RATIO;
+
+	// Minimum amount of results to not be considered an outlier
+	extern int MIN_RESULT_AMONUT;
 	///			Black jack parameters ^^	///
 };
 

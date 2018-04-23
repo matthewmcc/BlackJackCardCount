@@ -21,7 +21,9 @@ void OddsSamplerHandler::getResults()
 	for (Player &player : PlayersResult)
 	{
 		resultChecker.addNextPlayer(player);
-		resultStorage->storeResult(resultChecker.getBetMultiplier());
+		resultStorage->storeResult(player.getIndexBeforeDeal(), resultChecker.getBetMultiplier());
 	}
+
+	resultStorage->handPlayed();
 };
 

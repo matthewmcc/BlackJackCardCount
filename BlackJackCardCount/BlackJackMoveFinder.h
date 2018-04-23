@@ -1,13 +1,15 @@
 #include "BlackJackTableThreader.h"
 
 #pragma once
+// Runs a black jack simulation for each players hand outcome to find the best move...
+// ...to make at each black jack state.
 class BlackJackMoveFinder
 {
 public:
-	BlackJackMoveFinder(int, int);
+	BlackJackMoveFinder(int amountOfPacksInDeck, int amountOfPlayers);
 	~BlackJackMoveFinder();
 
-	void findMoves(int);
+	void findMoves(int iterationsPerMove);
 
 	void clearResults();
 
@@ -17,4 +19,3 @@ private:
 
 	void getMovesForPlayerScore(bool, int);
 };
-

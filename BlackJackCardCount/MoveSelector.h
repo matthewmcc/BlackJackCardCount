@@ -2,6 +2,8 @@
 #include "MoveStorage.h"
 
 #pragma once
+// Checks if a MoveFunction for a HandState has been calculated yet. Returns the best move...
+// ...for the HandState and Index if it has or a random move if it hasn't.
 class MoveSelector
 {
 public:
@@ -13,7 +15,7 @@ public:
 
 	~MoveSelector();
 
-	char move(HandState&, double);
+	char move(HandState &handState, double index);
 
 private:
 	MoveStorage* Moves;

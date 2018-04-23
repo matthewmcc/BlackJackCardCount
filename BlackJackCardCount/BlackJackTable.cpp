@@ -32,6 +32,8 @@ void BlackJackTable::playRound()
 
 void BlackJackTable::deal()
 {
+	setIndexBeforeDeal();
+
 	dealEachPlayerACard();
 	TableDealer.addDownCard(TableDeck.drawDealerHiddenCard());
 
@@ -39,6 +41,14 @@ void BlackJackTable::deal()
 	TableDealer.addUpCard(TableDeck.drawCard());
 
 	showPlayersDealersUpCard();
+};
+
+void BlackJackTable::setIndexBeforeDeal()
+{
+	for (Player &player : Players)
+	{
+		player.setIndexBeforeDeal(TableDeck.getCurrentRealCount());
+	}
 };
 
 void BlackJackTable::dealEachPlayerACard()
@@ -98,7 +108,6 @@ void BlackJackTable::storeResults()
 		MoveSamplerHandler handler = MoveSamplerHandler(TableDealer, Players);
 		handler.getResults();
 	}
-
 	else
 	{
 		OddsSamplerHandler handler = OddsSamplerHandler(TableDealer, Players);
